@@ -34,24 +34,24 @@ Implementasikan **kedua kelas** tersebut beserta **main program** yang berisi pe
 
 #### Kelas ListNode
 
-- [ ] Konstruktor
-- [ ] getValue
-- [ ] getNext
-- [ ] getPrev
-- [ ] setValue
-- [ ] setNext
-- [ ] setPrev
+- [x] Konstruktor
+- [x] getValue
+- [x] getNext
+- [x] getPrev
+- [x] setValue
+- [x] setNext
+- [x] setPrev
 
 #### Kelas DoublyLinkedList
 
 - [ ] Konstruktor
-- [ ] append
-- [ ] insertFirst
+- [x] append
+- [x] insertFirst
 - [ ] insertAfter
 - [ ] delFirst
 - [ ] delAfter
 - [ ] delLast
-- [ ] print
+- [x] print
 
 Jika ada spesifikasi yang tidak jelas, maka boleh dibuat asumsi. Tuliskan asumsi sebagai komentar pada kode program (jika ada).  
 Spesifikasi pengumpulan :
