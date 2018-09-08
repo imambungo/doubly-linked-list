@@ -44,12 +44,12 @@ Implementasikan **kedua kelas** tersebut beserta **main program** yang berisi pe
 
 #### Kelas DoublyLinkedList
 
-- [ ] Konstruktor
+- [x] Konstruktor
 - [x] append
 - [x] insertFirst
 - [x] insertAfter
 - [x] delFirst
-- [ ] delAfter
+- [x] delAfter
 - [x] delLast
 - [x] print
 

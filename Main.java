@@ -21,6 +21,11 @@ class DoublyLinkedList {
     // Spesifikasi tugas: hanya head tanpa tail
     private ListNode head;
 
+    // Konstruktor
+    public DoublyLinkedList() {
+        this.head = null;
+    }
+
     public boolean append(int value) {
         if (this.head == null) {
             head = new ListNode(value, null);
@@ -130,7 +135,9 @@ class DoublyLinkedList {
                 index--;
             }
             returnNode = pointer.getNext();// !
-            pointer.getNext().getNext().setPrev(pointer);
+            if (pointer.getNext().getNext() != null) {// Cegah null pointer exception jika ingin menghapus lastNode
+                pointer.getNext().getNext().setPrev(pointer);
+            }
             pointer.setNext(pointer.getNext().getNext());
         }
         return returnNode;
@@ -142,6 +149,7 @@ class ListNode {
     private ListNode next;
     private ListNode prev;
 
+    // Konstruktor
     public ListNode(float value, ListNode prev) {
         this.value = value;
         this.prev = prev;
