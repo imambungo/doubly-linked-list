@@ -117,33 +117,26 @@ class DoublyLinkedList {
         return returnNode;
     }
 
-    /* public ListNode remove(int index) {
-        ListNode temp = null;
-        if (index < 0 || index >= size()) {
+    public ListNode delAfter(int index) {
+        ListNode returnNode = null;
+        if (index < 0) {
             System.out.println("Error: Index out of bound gan :v");
-            if (index >= size())
-                System.out.println("\tvoid remove(" + index + ") -> Maximum index is " + (size() - 1));
-            if (index < 0)
-                System.out.println("\tvoid remove(" + index + ") -> Minimum index is 0");
-            return;
+            System.out.println("\tvoid delAfter(" + index + ") -> Minimum index is 0");
+            return null;
         } else if (index == 0) {
-            temp = delFirst();
-        } else if (index == size() - 1) {
-            temp = removeLast();
+            returnNode = delFirst();
         } else {
-            ListNode pointer = next;
+            ListNode pointer = head;
             while (index > 1) {
-                pointer = pointer.next;
+                pointer = pointer.getNext();
                 index--;
             }
-            temp = pointer.next;// !
-            pointer.next.next.prev = pointer;
-            pointer.next = pointer.next.next;
-            this.sum -= temp.getValue();
-            this.size--;
+            returnNode = pointer.getNext();// !
+            pointer.getNext().getNext().setPrev(pointer);
+            pointer.setNext(pointer.getNext().getNext());
         }
-        return temp;
-    } */
+        return returnNode;
+    }
 }
 
 class ListNode {
