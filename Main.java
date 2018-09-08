@@ -2,7 +2,14 @@
 // 09021281722063
 // IF REG A '17
 
-public class DoublyLinkedList{
+class Main {
+    public static void main(String[] args) {
+        DoublyLinkedList a = new DoublyLinkedList();
+
+    }
+}
+
+class DoublyLinkedList {
     // Spesifikasi tugas: hanya head tanpa tail
     private ListNode head;
 
@@ -15,9 +22,10 @@ public class DoublyLinkedList{
             while (pointer.getNext() != null) {
                 pointer = pointer.getNext();
             }
-            pointer.setNext(new ListNode(value,pointer));
+            pointer.setNext(new ListNode(value, pointer));
         }
         return true;
+        // return boolean -> mengikuti LinkedList bawaan java
     }
 
     public void insertFirst(int value) {
@@ -31,42 +39,38 @@ public class DoublyLinkedList{
     }
 
     public ListNode delFirst() {
-        ListNode untukReturn = this.head;
+        ListNode returnNode = this.head;
         if (this.head != null) {
             this.head = this.head.getNext();
-            untukReturn.next = null;// apakah harus pakai ini?
         }
-        return untukReturn;
+        return returnNode;
     }
 
-    public void add(int index, int nilai) {
-        if (index < 0 || index > size()) {
-            System.out.println("Error: Index out of bound gan :v");
-            if (index > size())
-                System.out.println("\tvoid add(" + index + "," + nilai + ") -> Max index allowed: " + (size()-1));
-            if (index < 0)
-                System.out.println("\tvoid add(" + index + "," + nilai + ") -> Minimum index is 0");
+    public void insertAfter(int index, int nilai) {
+        if (index < 0) {
+            /*
+             * karena length/size tidak masuk spesifikasi, pengecekan index melewati batas
+             * tidak dilakukan disini.
+             */
+            System.out.println("Error: Index out of bound");
+            System.out.println("\tvoid insertAfter(" + index + "," + nilai + ") -> Minimum index is 0");
             System.exit(0);
         } else if (index == 0) {
             insertFirst(nilai);
-        } else if (index == size()) {
-            add(nilai);
         } else {
             ListNode nodeBaru;
-            ListNode pointer = next;
+            ListNode pointer = this.head;
             while (index > 0) {
-                pointer = pointer.next;
+                pointer = pointer.getNext();
                 index--;
             }
-            nodeBaru = new ListNode(nilai,pointer.prev);
-            pointer.prev.next = nodeBaru;
-            pointer.prev = nodeBaru;
-            nodeBaru.next = pointer;
-            this.size++;
-            this.sum += nilai;
+            nodeBaru = new ListNode(nilai, pointer.getPrev());
+            pointer.getPrev().setNext(nodeBaru);
+            pointer.setPrev(nodeBaru);
+            nodeBaru.setNext(pointer);
         }
     }
-    
+
     public void print() {
         System.out.print("[");
         ListNode pointer = this.head;
@@ -75,34 +79,15 @@ public class DoublyLinkedList{
             pointer = pointer.getNext();
         }
         while (pointer != null) {
-            System.out.print(","+pointer.getValue());
+            System.out.print("," + pointer.getValue());
             pointer = pointer.getNext();
         }
         System.out.println("]");
     }
 
-    public float get(int index) {
-        if (index < 0 || index >= size()) {
-            System.out.println("Error: Index out of bound gan :v");
-            if (index >= size())
-                System.out.println("\tfloat get(" + index + ") -> Maximum index is " + (size()-1));
-            if (index < 0)
-                System.out.println("\tfloat get(" + index + ") -> Minimum index is 0");
-            System.exit(0);
-        } else {
-            ListNode pointer = next;
-            while (index > 0) {
-                pointer = pointer.next;
-                index--;
-            }
-            return pointer.getValue();
-        }
-        return -1;
-    }
-
     public ListNode removeLast() {
         ListNode temp = null;
-        if (next != null){
+        if (next != null) {
             if (next.next == null) {
                 temp = next;
                 this.sum -= next.getValue();
@@ -129,7 +114,7 @@ public class DoublyLinkedList{
             System.exit(0);
         } else if (index == 0) {
             temp = delFirst();
-        } else if (index == size()-1) {
+        } else if (index == size() - 1) {
             temp = removeLast();
         } else {
             ListNode pointer = next;
@@ -137,7 +122,7 @@ public class DoublyLinkedList{
                 pointer = pointer.next;
                 index--;
             }
-            temp = pointer.next;//!
+            temp = pointer.next;// !
             pointer.next.next.prev = pointer;
             pointer.next = pointer.next.next;
             this.sum -= temp.getValue();
@@ -146,7 +131,8 @@ public class DoublyLinkedList{
         return temp;
     }
 }
-class ListNode{
+
+class ListNode {
     private float value;
     private ListNode next;
     private ListNode prev;
@@ -171,7 +157,7 @@ class ListNode{
     public void setNext(ListNode next) {
         this.next = next;
     }
-    
+
     public ListNode getPrev() {
         return this.prev;
     }

@@ -32,6 +32,3 @@ preexec.sh
 
 # for storing output
 typescript
-
-# Main class
-Main.java

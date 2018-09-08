@@ -48,7 +48,7 @@ Implementasikan **kedua kelas** tersebut beserta **main program** yang berisi pe
 - [x] append
 - [x] insertFirst
 - [ ] insertAfter
-- [ ] delFirst
+- [x] delFirst
 - [ ] delAfter
 - [ ] delLast
 - [x] print
