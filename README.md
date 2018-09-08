@@ -47,7 +47,7 @@ Implementasikan **kedua kelas** tersebut beserta **main program** yang berisi pe
 - [ ] Konstruktor
 - [x] append
 - [x] insertFirst
-- [ ] insertAfter
+- [x] insertAfter
 - [x] delFirst
 - [ ] delAfter
 - [x] delLast

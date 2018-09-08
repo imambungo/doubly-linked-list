@@ -12,7 +12,7 @@ class Main {
             a.append(i);
         }
         a.print();
-        a.insertAfter(6,5);
+        a.insertAfter(7, 6);
         a.print();
     }
 }
@@ -57,12 +57,12 @@ class DoublyLinkedList {
     public void insertAfter(float value, int index) {
         if (index < 0) {
             /*
-             * karena length/size tidak masuk spesifikasi, pengecekan index melewati batas
+             * karena length/size tidak masuk spesifikasi tugas, pengecekan index melewati batas
              * tidak dilakukan disini.
              */
             System.out.println("Error: Index out of bound");
             System.out.println("\tvoid insertAfter(" + index + "," + value + ") -> Minimum index is 0");
-            System.exit(0);
+            return;
         } else if (index == 0) {
             insertFirst(value);
         } else {
@@ -70,12 +70,18 @@ class DoublyLinkedList {
             ListNode pointer = this.head;
             while (index > 0) {
                 pointer = pointer.getNext();
+                if (pointer == null) {// Cek jika index melewati batas
+                    System.out.println("Error: Index out of bound");
+                    return;
+                }
                 index--;
             }
-            nodeBaru = new ListNode(value, pointer.getPrev());
-            pointer.getPrev().setNext(nodeBaru);
-            pointer.setPrev(nodeBaru);
-            nodeBaru.setNext(pointer);
+            nodeBaru = new ListNode(value, pointer);
+            if (pointer.getNext() != null) { //Cegah null pointer exception jika sudah di ujung list
+                pointer.getNext().setPrev(nodeBaru);
+            }
+            nodeBaru.setNext(pointer.getNext());
+            pointer.setNext(nodeBaru);
         }
     }
 
@@ -119,7 +125,7 @@ class DoublyLinkedList {
                 System.out.println("\tvoid remove(" + index + ") -> Maximum index is " + (size() - 1));
             if (index < 0)
                 System.out.println("\tvoid remove(" + index + ") -> Minimum index is 0");
-            System.exit(0);
+            return;
         } else if (index == 0) {
             temp = delFirst();
         } else if (index == size() - 1) {
