@@ -85,22 +85,22 @@ class DoublyLinkedList {
         System.out.println("]");
     }
 
-    public ListNode removeLast() {
-        ListNode temp = null;
-        if (next != null) {
-            if (next.next == null) {
-                temp = next;
-                this.sum -= next.getValue();
-                next = null;
+    public ListNode delLast() {
+        ListNode returnNode = null;
+        if (this.head != null) {
+            if (head.getNext() == null) {
+                returnNode = this.head;
+                this.head = null;
             } else {
-                temp = tail;
-                this.sum -= temp.getValue();
-                tail.prev.next = null;
-                tail = tail.prev;
+                ListNode pointer = this.head;
+                while (pointer.getNext() != null) {
+                    pointer = pointer.getNext();
+                }
+                returnNode = pointer;
+                pointer.getPrev().setNext(null);
             }
-            this.size--;
         }
-        return temp;
+        return returnNode;
     }
 
     public ListNode remove(int index) {

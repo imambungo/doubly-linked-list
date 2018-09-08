@@ -50,7 +50,7 @@ Implementasikan **kedua kelas** tersebut beserta **main program** yang berisi pe
 - [ ] insertAfter
 - [x] delFirst
 - [ ] delAfter
-- [ ] delLast
+- [x] delLast
 - [x] print
 
 Jika ada spesifikasi yang tidak jelas, maka boleh dibuat asumsi. Tuliskan asumsi sebagai komentar pada kode program (jika ada).  
