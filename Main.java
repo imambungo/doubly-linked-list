@@ -63,8 +63,6 @@ class DoublyLinkedList {
             System.out.println("Error: Index out of bound");
             System.out.println("\tvoid insertAfter(" + index + "," + value + ") -> Minimum index is 0");
             return;
-        } else if (index == 0) {
-            insertFirst(value);
         } else {
             ListNode nodeBaru;
             ListNode pointer = this.head;
