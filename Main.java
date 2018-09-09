@@ -123,22 +123,26 @@ class DoublyLinkedList {
     public ListNode delAfter(int index) {
         ListNode returnNode = null;
         if (index < 0) {
-            System.out.println("Error: Index out of bound gan :v");
+            System.out.println("Error: Index out of bound");
             System.out.println("\tvoid delAfter(" + index + ") -> Minimum index is 0");
             return null;
-        } else if (index == 0) {
-            returnNode = delFirst();
         } else {
             ListNode pointer = head;
-            while (index > 1) {
+            while (index > 0) {
                 pointer = pointer.getNext();
+                if (pointer == null) {// Cek jika index melewati batas
+                    System.out.println("Error: Index out of bound");
+                    return null;
+                }
                 index--;
             }
-            returnNode = pointer.getNext();// !
-            if (pointer.getNext().getNext() != null) {// Cegah null pointer exception jika ingin menghapus lastNode
-                pointer.getNext().getNext().setPrev(pointer);
+            returnNode = pointer.getNext();
+            if (pointer.getNext() != null) {// Cegah null pointer exception jika sudah di lastNode
+                if (pointer.getNext().getNext() != null) {// Cegah null pointer exception jika sudah di lastNode
+                    pointer.getNext().getNext().setPrev(pointer);
+                }
+                pointer.setNext(pointer.getNext().getNext());
             }
-            pointer.setNext(pointer.getNext().getNext());
         }
         return returnNode;
     }
