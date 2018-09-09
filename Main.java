@@ -5,14 +5,70 @@
 class Main {
     public static void main(String[] args) {
         DoublyLinkedList a = new DoublyLinkedList();
+        System.out.println("Deklarasi");
         a.print();
-        a.append(4);
-        a.print();
-        for (int i = 0; i < 5; i++) {
+
+        System.out.println("\nappend 4 kali");
+        for (int i = 0; i < 4; i++) {
             a.append(i);
+            a.print();
         }
+
+        System.out.println("\ndelLast 4 kali");
+        for (int i = 0; i < 4; i++) {
+            a.delLast();
+            a.print();
+        }
+
+        System.out.println("\ninsertFirst 4 kali");
+        for (int i = 0; i < 4; i++) {
+            a.insertFirst(i);
+            a.print();
+        }
+
+        System.out.println("\ndelFirst 4 kali");
+        for (int i = 0; i < 4; i++) {
+            a.delFirst();
+            a.print();
+        }
+
+        System.out.println("\ninsertFirst");
+        a.insertFirst(34);
         a.print();
-        a.insertAfter(7, 6);
+
+        System.out.println("\ninsertAfter 4 kali");
+        for (int i = 0; i < 4; i++) {
+            a.insertAfter(3.2f*i,i);
+            a.print();
+        }
+
+        System.out.println("\ninsert 99 After index 0");
+        a.insertAfter(99,0);
+        a.print();
+
+        System.out.println("\ninsert 99 After index 2");
+        a.insertAfter(99,2);
+        a.print();
+
+        System.out.println("\ninsert 99 After index 6");
+        a.insertAfter(99,6);
+        a.print();
+
+        System.out.println("\ndelAfter index 6");
+        a.delAfter(6);
+        a.print();
+        
+        System.out.println("\ndelAfter index 6 lagi");
+        a.delAfter(6);
+        a.print();
+        System.out.println("(index 7 == null)");
+
+        System.out.println("\ndelAfter index 0");
+        a.delAfter(0);
+        a.print();
+        
+        System.out.println("\ndelAfter index 3");
+        a.delAfter(3);
         a.print();
     }
 }
@@ -38,7 +94,7 @@ class DoublyLinkedList {
             pointer.setNext(new ListNode(value, pointer));
         }
         return true;
-        // return boolean -> mengikuti LinkedList bawaan java
+        // return boolean -> mengikuti LinkedList bawaan java -> boolean add(value)
     }
 
     public void insertFirst(float value) {
@@ -55,12 +111,10 @@ class DoublyLinkedList {
         return returnNode;
     }
 
+    // Masukkan value setelah index ke-n
     public void insertAfter(float value, int index) {
-        if (index < 0) {
-            /*
-             * karena length/size tidak masuk spesifikasi tugas, pengecekan index melewati batas
-             * tidak dilakukan disini.
-             */
+        if (index < 0) {// karena length/size tidak masuk spesifikasi tugas, pengecekan index melebihi
+                        // batas tidak dilakukan disini.
             System.out.println("Error: Index out of bound");
             System.out.println("\tvoid insertAfter(" + index + "," + value + ") -> Minimum index is 0");
             return;
@@ -105,6 +159,7 @@ class DoublyLinkedList {
                 returnNode = this.head;
                 this.head = null;
             } else {
+                // Karena tidak pakai tail, traverse
                 ListNode pointer = this.head;
                 while (pointer.getNext() != null) {
                     pointer = pointer.getNext();
@@ -116,6 +171,7 @@ class DoublyLinkedList {
         return returnNode;
     }
 
+    // Hapus node setelah node pada index ke-n
     public ListNode delAfter(int index) {
         ListNode returnNode = null;
         if (index < 0) {
@@ -135,7 +191,7 @@ class DoublyLinkedList {
             returnNode = pointer.getNext();
             if (pointer.getNext() != null) {// Cegah null pointer exception jika sudah di lastNode
                 if (pointer.getNext().getNext() != null) {// Cegah null pointer exception jika sudah di lastNode
-                    pointer.getNext().getNext().setPrev(pointer);
+                    pointer.getNext().getNext().setPrev(pointer);// prev harus diganti dari node yg dihapus ke pointer
                 }
                 pointer.setNext(pointer.getNext().getNext());
             }
