@@ -42,13 +42,9 @@ class DoublyLinkedList {
     }
 
     public void insertFirst(float value) {
-        if (this.head == null) {
-            this.head = new ListNode(value, null);
-        } else {
-            ListNode newNode = new ListNode(value, null);
-            newNode.setNext(this.head);
-            this.head = newNode;
-        }
+        ListNode newNode = new ListNode(value, null);
+        newNode.setNext(this.head);
+        this.head = newNode;
     }
 
     public ListNode delFirst() {
