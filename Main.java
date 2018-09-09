@@ -2,77 +2,7 @@
 // 09021281722063
 // IF REG A '17
 
-class Main {
-    public static void main(String[] args) {
-        DoublyLinkedList a = new DoublyLinkedList();
-        System.out.println("Deklarasi");
-        a.print();
-
-        System.out.println("\nappend 4 kali");
-        for (int i = 0; i < 4; i++) {
-            a.append(i);
-            a.print();
-        }
-
-        System.out.println("\ndelLast 4 kali");
-        for (int i = 0; i < 4; i++) {
-            a.delLast();
-            a.print();
-        }
-
-        System.out.println("\ninsertFirst 4 kali");
-        for (int i = 0; i < 4; i++) {
-            a.insertFirst(i);
-            a.print();
-        }
-
-        System.out.println("\ndelFirst 4 kali");
-        for (int i = 0; i < 4; i++) {
-            a.delFirst();
-            a.print();
-        }
-
-        System.out.println("\ninsertFirst");
-        a.insertFirst(34);
-        a.print();
-
-        System.out.println("\ninsertAfter 4 kali");
-        for (int i = 0; i < 4; i++) {
-            a.insertAfter(3.2f*i,i);
-            a.print();
-        }
-
-        System.out.println("\ninsert 99 After index 0");
-        a.insertAfter(99,0);
-        a.print();
-
-        System.out.println("\ninsert 99 After index 2");
-        a.insertAfter(99,2);
-        a.print();
-
-        System.out.println("\ninsert 99 After index 6");
-        a.insertAfter(99,6);
-        a.print();
-
-        System.out.println("\ndelAfter index 6");
-        a.delAfter(6);
-        a.print();
-        
-        System.out.println("\ndelAfter index 6 lagi");
-        a.delAfter(6);
-        a.print();
-        System.out.println("(index 7 == null)");
-
-        System.out.println("\ndelAfter index 0");
-        a.delAfter(0);
-        a.print();
-        
-        System.out.println("\ndelAfter index 3");
-        a.delAfter(3);
-        a.print();
-    }
-}
-
+// 
 class DoublyLinkedList {
     // Spesifikasi tugas: hanya head tanpa tail
     private ListNode head;
@@ -130,7 +60,7 @@ class DoublyLinkedList {
                 index--;
             }
             nodeBaru = new ListNode(value, pointer);
-            if (pointer.getNext() != null) { //Cegah null pointer exception jika sudah di ujung list
+            if (pointer.getNext() != null) { // Cegah null pointer exception jika sudah di ujung list
                 pointer.getNext().setPrev(nodeBaru);
             }
             nodeBaru.setNext(pointer.getNext());
@@ -233,5 +163,76 @@ class ListNode {
 
     public void setPrev(ListNode prev) {
         this.prev = prev;
+    }
+}
+
+class Main {
+    public static void main(String[] args) {
+        DoublyLinkedList a = new DoublyLinkedList();
+        System.out.println("Deklarasi");
+        a.print();
+
+        System.out.println("\nappend 4 kali");
+        for (int i = 0; i < 4; i++) {
+            a.append(i);
+            a.print();
+        }
+
+        System.out.println("\ndelLast 4 kali");
+        for (int i = 0; i < 4; i++) {
+            a.delLast();
+            a.print();
+        }
+
+        System.out.println("\ninsertFirst 4 kali");
+        for (int i = 0; i < 4; i++) {
+            a.insertFirst(i);
+            a.print();
+        }
+
+        System.out.println("\ndelFirst 4 kali");
+        for (int i = 0; i < 4; i++) {
+            a.delFirst();
+            a.print();
+        }
+
+        System.out.println("\ninsertFirst");
+        a.insertFirst(34);
+        a.print();
+
+        System.out.println("\ninsertAfter 4 kali");
+        for (int i = 0; i < 4; i++) {
+            a.insertAfter(3.2f*i,i);
+            a.print();
+        }
+
+        System.out.println("\ninsert 99 After index 0");
+        a.insertAfter(99,0);
+        a.print();
+
+        System.out.println("\ninsert 99 After index 2");
+        a.insertAfter(99,2);
+        a.print();
+
+        System.out.println("\ninsert 99 After index 6");
+        a.insertAfter(99,6);
+        a.print();
+
+        System.out.println("\ndelAfter index 6");
+        a.delAfter(6);
+        a.print();
+        
+        System.out.println("\ndelAfter index 6 lagi");
+        a.delAfter(6);
+        a.print();
+        System.out.println("(index 7 == null)");
+
+        System.out.println("\ndelAfter index 0");
+        a.delAfter(0);
+        a.print();
+        
+        System.out.println("\ndelAfter index 3");
+        a.delAfter(3);
+        a.print();
     }
 }
