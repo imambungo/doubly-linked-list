@@ -2,7 +2,14 @@
 // 09021281722063
 // IF REG A '17
 
-// 
+// append       22
+// insertFirst  37
+// insertAfter  44
+// delFirst     70
+// delAfter     79
+// delLast      106
+// print        125
+
 class DoublyLinkedList {
     // Spesifikasi tugas: hanya head tanpa tail
     private ListNode head;
@@ -33,14 +40,6 @@ class DoublyLinkedList {
         this.head = newNode;
     }
 
-    public ListNode delFirst() {
-        ListNode returnNode = this.head;
-        if (this.head != null) {
-            this.head = this.head.getNext();
-        }
-        return returnNode;
-    }
-
     // Masukkan value setelah index ke-n
     public void insertAfter(float value, int index) {
         if (index < 0) {// karena length/size tidak masuk spesifikasi tugas, pengecekan index melebihi
@@ -68,35 +67,10 @@ class DoublyLinkedList {
         }
     }
 
-    public void print() {
-        System.out.print("[");
-        ListNode pointer = this.head;
+    public ListNode delFirst() {
+        ListNode returnNode = this.head;
         if (this.head != null) {
-            System.out.print(this.head.getValue());
-            pointer = pointer.getNext();
-        }
-        while (pointer != null) {
-            System.out.print(", " + pointer.getValue());
-            pointer = pointer.getNext();
-        }
-        System.out.println("]");
-    }
-
-    public ListNode delLast() {
-        ListNode returnNode = null;
-        if (this.head != null) {
-            if (head.getNext() == null) {
-                returnNode = this.head;
-                this.head = null;
-            } else {
-                // Karena tidak pakai tail, traverse
-                ListNode pointer = this.head;
-                while (pointer.getNext() != null) {
-                    pointer = pointer.getNext();
-                }
-                returnNode = pointer;
-                pointer.getPrev().setNext(null);
-            }
+            this.head = this.head.getNext();
         }
         return returnNode;
     }
@@ -127,6 +101,39 @@ class DoublyLinkedList {
             }
         }
         return returnNode;
+    }
+
+    public ListNode delLast() {
+        ListNode returnNode = null;
+        if (this.head != null) {
+            if (head.getNext() == null) {
+                returnNode = this.head;
+                this.head = null;
+            } else {
+                // Karena tidak pakai tail, traverse
+                ListNode pointer = this.head;
+                while (pointer.getNext() != null) {
+                    pointer = pointer.getNext();
+                }
+                returnNode = pointer;
+                pointer.getPrev().setNext(null);
+            }
+        }
+        return returnNode;
+    }
+    
+    public void print() {
+        System.out.print("[");
+        ListNode pointer = this.head;
+        if (this.head != null) {
+            System.out.print(this.head.getValue());
+            pointer = pointer.getNext();
+        }
+        while (pointer != null) {
+            System.out.print(", " + pointer.getValue());
+            pointer = pointer.getNext();
+        }
+        System.out.println("]");
     }
 }
 
